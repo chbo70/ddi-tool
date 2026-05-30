@@ -14,11 +14,13 @@ app.add_middleware(
 
 DB_FILE = "database.sqlite"
 
+
 @app.on_event("startup")
 def startup_db():
     conn = sqlite3.connect(DB_FILE)
     conn.close()
     print("Datenbank lauft ")
+
 
 @app.get("/")
 def read_root():
