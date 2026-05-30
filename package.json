@@ -17,5 +17,9 @@
   "bugs": {
     "url": "https://github.com/chbo70/ddi-tool/issues"
   },
-  "homepage": "https://github.com/chbo70/ddi-tool#readme"
+  "homepage": "https://github.com/chbo70/ddi-tool#readme",
+  "devDependencies": {
+    "@semantic-release/exec": "^7.1.0",
+    "@semantic-release/git": "^10.0.1"
+  }
 }
