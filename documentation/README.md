@@ -32,5 +32,25 @@ Das Tool muss konstruktive Vorschläge machen, neben Alerts die einfach nur warn
 
 API-Service der in bestehende Systeme integriert werden kann. Ärzte wechseln ungern die Anwendung. Wenn sie für den Check eine separate Website oder App öffnen müssen, werden sie das im stressigen Alltag wahrscheinlich nicht tun. Das Tool muss dort sein, wo auch der Rest stattfindet. Als Standalone kann auch eine Web-App gemacht werden, die an der gleichen API andockt. So wie wir das auch machen werden.
 
+## Erklärung der Usability-Aspekte
+
+DISCLAIMER: Die Ideen wurden nicht 1:1 wie unten genannt umgesetzt. Es wurde nur ein einfacher Prototyp erstellt, welcher lediglich die Drug-Drug Interaction zwischen einer Medikamentenliste und einem neu zu hinzufügenden Medikament, aus der Sicht eines schon angemeldeten Arzt, beinhaltet.
+
+### Effizienz
+Der wichtigste Punkt für Ärzte was Benutzerfreundlichkeit angeht ist der zeitliche Aufwand, um an die Kernfunktion des Tools zu kommen. Daher die Idee, dass das Tool hauptsächlich ein API ist, um sie möglichst einfach in schon ein bestehendes System integrieren zu können. So ist der Arzt direkt angemeldet und kann aus der Patientenansicht direkt auf das Tool zugreifen, wo auch andere Daten wie die Medikation schon als Parameter bereitstehen und nicht extra angefordert müssen. Idealerweise gibt es in der Medikamentenliste vom Patienten ein zusätzliches Feld "Interaktion", bei dem auf evtl. vorhandene Interaktionen hingewiesen wird. Die Suchfunktion hat eine Autovervollständigung von Medikamenten Namen, um eine schnellere und fehlerfrei Eingabe zu gewährleisten.
+
+### Risikominimierung
+Im medizinischen Kontext sind Fehler und Risiko ein wichtiger Aspekt. Wenn eine Interaktion erkannt wird, darf dies nicht untergehen. Daher haben wir uns für ein Ampelsystem Farbschema entschieden:
+- Grün: Keine bekannten Wechselwirkungen
+- Orange: Vorsicht geboten, z.B. Dosisanpassung nötig
+- Rot: Gefährliche Wechselwirkung, das hinzufügen erfordert eine explizite Bestätigung
+
+Durch die Autovervollständigung werden Tippfehler reduziert und durch das Anzeigen von Interaktionen in der Medikamentenliste, sieht der Arzt sofort, ob es bereits Komplikationen gibt.
+
+### Erlernbarkeit und Übersichtlichkeit
+Das System sollte sich intuitiv von selbst erklären, ohne dass die Ärzte Anleitungen lesen müssen. Durch die Integration in schon ein für den Arzt bekanntes System ermöglicht einen leichten Einstieg. Die Nutzung eines Pop-up-Fenster für die Suche ist intuitiv verständlich und der Arzt verliert dadurch nicht den Kontext zum darunterliegenden Patientenprofil. Ein schlichtes Design mit deutlichen und farblichen Inputs verhindert Verwirrung. Eindeutiges Feedback durch Notification-Banner zeigen dem Arzt direkt, welche Auswirkungen seine Eingaben haben.
+
+### Erweiterungen
+Durch einen Kategorie-Prefilter & Alternativ-Vorschläge kann der Arzt entlastet werden. Zum Beispiel wenn Medikament A eine Wechselwirkung hat, denkt die App mit und schlägt direkt Medikament B aus derselben Kategorie vor und der Arzt spart sich erneutes Recherchieren. Durch das Hinzufügen von der Dosis eine Medikamentes könnten auch smartere Entscheidungen und akkuratere Warnungen erstellt werden. Beides setzt eine Erweiterung des Datensets voraus.
 
 [^1]: https://doi.org/10.1016/j.jbi.2015.04.006
