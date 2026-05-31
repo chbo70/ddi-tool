@@ -6,3 +6,5 @@ backend/__pycache__/
 *.sqlite3
 *.db
 backend/database.sqlite
+
+*.csv

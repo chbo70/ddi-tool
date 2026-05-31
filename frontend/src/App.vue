@@ -5,14 +5,12 @@ import AppHeader from './components/AppHeader.vue'
 import PatientSearch from './components/PatientSearch.vue'
 import PatientList from './components/PatientList.vue'
 import AppFooter from './components/AppFooter.vue'
+import { fetchPatients } from './services/api.ts'
 
 const searchQuery = ref('')
-const patients = ref([
-  { id: 1, name: 'Max Mustermann', dob: '12.04.1985', drugCount: 3 },
-  { id: 2, name: 'Erika Musterfrau', dob: '05.11.1992', drugCount: 1 },
-  { id: 3, name: 'Johannes Schmidt', dob: '23.08.1964', drugCount: 2 },
-  { id: 4, name: 'Anna Weber', dob: '17.02.1978', drugCount: 4 }
-])
+const patients = ref([])
+
+fetchPatients(patients)
 
 const filteredPatients = computed(() => {
   if (!searchQuery.value) return patients.value
