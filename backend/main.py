@@ -48,7 +48,7 @@ def prefetch_drugs(patient_id: int, session_id: str = Header(...)):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT drug_name FROM patient_drugs WHERE patient_id = ?", (patient_id,))
+    cursor.execute("SELECT drug_name FROM patient_drugs WHERE patient_id = ?", (patient_id,)) # gets all drugs for the patient from the database
     drug_list = [row["drug_name"] for row in cursor.fetchall()]
 
     placeholders = ','.join(['?'] * len(drug_list))
