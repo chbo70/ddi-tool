@@ -81,7 +81,7 @@ if cursor.fetchone()[0] == 0:
         (1, "Metformin", 0, None),
         
         (2, "Ibuprofen", 0, None),
-        (2, "Lansoprazole", 0, "portal vein thrombosis"),
+        (2, "Lansoprazole", 1, "portal vein thrombosis"),
         (2, "Paracetamol", 0, None),
         (2, "Amoxapine", 0, None),
         
@@ -92,9 +92,9 @@ if cursor.fetchone()[0] == 0:
         (3, "Cetirizine", 0, None),
         
         (4, "Nitroglycerin", 0, None),
-        (4, "Terazosin", 0, "balance disorder"),
+        (4, "Terazosin", 1, "balance disorder"),
         (4, "Clopidogrel", 0, None),
-        (4, "Metoprolol", 0, "Embolism pulmonary")
+        (4, "Metoprolol", 1, "Embolism pulmonary")
     ]
     cursor.executemany(
         "INSERT INTO patient_drugs (patient_id, drug_name, is_interaction, interaction) VALUES (?, ?, ?, ?)", 
