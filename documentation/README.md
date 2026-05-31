@@ -32,6 +32,12 @@ Das Tool muss konstruktive Vorschläge machen, neben Alerts die einfach nur warn
 
 API-Service der in bestehende Systeme integriert werden kann. Ärzte wechseln ungern die Anwendung. Wenn sie für den Check eine separate Website oder App öffnen müssen, werden sie das im stressigen Alltag wahrscheinlich nicht tun. Das Tool muss dort sein, wo auch der Rest stattfindet. Als Standalone kann auch eine Web-App gemacht werden, die an der gleichen API andockt. So wie wir das auch machen werden.
 
+## Design Mock-Up
+
+![KIS](images/managment_system.png)
+
+![KIS](images/medication_popup.png)
+
 ## Erklärung der Usability-Aspekte
 
 DISCLAIMER: Die Ideen wurden nicht 1:1 wie unten genannt umgesetzt. Es wurde nur ein einfacher Prototyp erstellt, welcher lediglich die Drug-Drug Interaction zwischen einer Medikamentenliste und einem neu zu hinzufügenden Medikament, aus der Sicht eines schon angemeldeten Arzt, beinhaltet.
