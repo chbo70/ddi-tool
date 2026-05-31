@@ -47,7 +47,7 @@ const toggleExpand = (id) => {
                         </div>
 
                         <div class="flex items-center">
-                            <span v-if="drug.is_interaction"
+                            <span v-if="drug.has_interaction"
                                 class="mr-4 text-xs font-medium px-2 py-1 bg-red-100 text-red-700 rounded-md">
                                 Warnungen vorhanden
                             </span>
@@ -57,7 +57,7 @@ const toggleExpand = (id) => {
                     </div>
 
                     <div v-show="expandedId === drug.id" class="bg-gray-50 px-4 pb-4 border-t border-gray-100">
-                        <div v-if="drug.is_interaction"
+                        <div v-if="drug.has_interaction"
                             class="p-4 bg-red-50 border border-red-100 rounded-lg flex items-start mt-4">
                             <ExclamationTriangleIcon class="w-5 h-5 text-red-600 mr-2 flex-shrink-0 mt-0.5" />
                             <div>

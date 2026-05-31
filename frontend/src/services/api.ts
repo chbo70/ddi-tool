@@ -50,7 +50,7 @@ async function addDrugToPatient(patientId: number, drugName: string, isInteracti
         },
         body: JSON.stringify({
             drug_name: drugName,
-            is_interaction: isInteraction,
+            has_interaction: isInteraction,
             interaction: interaction
         })
     });

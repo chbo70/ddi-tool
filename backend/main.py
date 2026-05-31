@@ -98,10 +98,9 @@ def get_drug_interaction(drug: str = Body(..., embed=True)):
         drug1_val = str(row["drug1"].lower())
         drug2_val = str(row["drug2"].lower())
         
+        # search for both direct and reverse match
         if search_drug in drug1_val or search_drug in drug2_val:
-            
             other_drug = drug2_val if search_drug in drug1_val else drug1_val
-            
             is_prescribed  = any(prescribed_drug in other_drug or other_drug in prescribed_drug for prescribed_drug in patient_drugs)
             
             if is_prescribed:
@@ -123,7 +122,7 @@ def get_drug_interaction(drug: str = Body(..., embed=True)):
 
 class AddDrugRequest(BaseModel):
     drug_name: str
-    is_interaction: bool = False
+    has_interaction: bool = False
     interaction: Optional[str] = None
 
 @app.post("/api/patients/{patient_id}/drugs")
@@ -132,9 +131,9 @@ def add_patient_drug(patient_id: int, drug_data: AddDrugRequest):
     cursor = conn.cursor()
 
     cursor.execute("""
-        INSERT INTO patient_drugs (patient_id, drug_name, is_interaction, interaction)
+        INSERT INTO patient_drugs (patient_id, drug_name, has_interaction, interaction)
         VALUES (?, ?, ?, ?)
-    """, (patient_id, drug_data.drug_name.strip(), drug_data.is_interaction, drug_data.interaction))
+    """, (patient_id, drug_data.drug_name.strip(), drug_data.has_interaction, drug_data.interaction))
 
     cursor.execute("""
         UPDATE patients 
