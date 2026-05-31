@@ -22,7 +22,7 @@ Tools, die nur zusätzliche Arbeit machen werden immer abgelehnt und nur rekulan
 
 ### Für welche Personengruppen sollen solche Tools verfügbar gemacht werden, und wie?
 
-Die Hauptzielgruppe sind Ärzte und PflegerInnen. Das Tool soll voll integriert in das KIS oder die Praxissoftware sein, wo Medikamente von PatientInnen verwaltet werden. So sehen andere Ärzte oder PflegerInnen, ob es eine gefährdende Interaktion gibt. In diesem Fall nur als ein Mock-Up dargestellt.
+Die Hauptzielgruppe sind Ärzte und PflegerInnen. So ein Tool soll am besten vollintegiert in ein KIS oder die Praxissoftware sein, wo Medikamente von PatientInnen verwaltet werden. So sehen andere Ärzte oder PflegerInnen, ob es eine gefährdende Interaktion gibt und die Benutzung is reibungslos ohne großen Mehraufwand.
 
 ### Welche Recommendations sollte ein solches Tool machen?
 
