@@ -8,6 +8,7 @@
     "build": "vite build"
   },
   "dependencies": {
+    "@heroicons/vue": "^2.2.0",
     "vue": "^3.4.0"
   },
   "devDependencies": {

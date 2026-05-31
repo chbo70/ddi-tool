@@ -33,7 +33,7 @@ cursor.execute("""
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         patient_id INTEGER NOT NULL,
         drug_name TEXT NOT NULL,
-        is_interaction BOOLEAN DEFAULT 0,
+        has_interaction BOOLEAN DEFAULT 0,
         interaction TEXT,
         FOREIGN KEY (patient_id) REFERENCES patients (id) ON DELETE CASCADE
     )
@@ -63,7 +63,7 @@ cursor.execute("SELECT COUNT(*) FROM patients")
 
 if cursor.fetchone()[0] == 0:
     patients_data = [
-        ("Max Mustermann", "12.04.1985", 5),
+        ("Max Mustermann", "12.04.1985", 4),
         ("Erika Musterfrau", "05.11.1992", 4),
         ("Johannes Schmidt", "23.08.1964", 5),
         ("Anna Weber", "17.02.1978", 4)
@@ -75,13 +75,12 @@ if cursor.fetchone()[0] == 0:
 
     patient_drugs_data = [
         (1, "Aciclovir", 0, None),
-        (1, "Amlodipine", 1, "aseptic necrosis bone"),
-        (1, "Ofloxacin", 0, None),
-        (1, "Aripiprazole", 0, None),
-        (1, "Metformin", 0, None),
+        (1, "Amlodipine", 1, "Aciclovir + Amlodipine: bleeding Vaginal"),
+        (1, "Aripiprazole", 1, "Metformin + Aripiprazole: blood in urine | Amlodipine + Aripiprazole: Strabismus"),
+        (1, "Metformin", 1, "Aciclovir + Metformin: Infection Urinary Tract | Metformin + Aripiprazole: blood in urine | Amlodipine + Metformin: bradycardia"),
         
         (2, "Ibuprofen", 0, None),
-        (2, "Lansoprazole", 0, "portal vein thrombosis"),
+        (2, "Lansoprazole", 1, "Ibuprofen + Lansoprazole: portal vein thrombosis"),
         (2, "Paracetamol", 0, None),
         (2, "Amoxapine", 0, None),
         
@@ -92,12 +91,12 @@ if cursor.fetchone()[0] == 0:
         (3, "Cetirizine", 0, None),
         
         (4, "Nitroglycerin", 0, None),
-        (4, "Terazosin", 0, "balance disorder"),
+        (4, "Terazosin", 1, "Nitroglycerin + Terazosin: balance disorder"),
         (4, "Clopidogrel", 0, None),
-        (4, "Metoprolol", 0, "Embolism pulmonary")
+        (4, "Metoprolol", 1, "Metoprolol + Nitroglycerin: movement disorder | Metoprolol + Terazosin: Embolism pulmonary")
     ]
     cursor.executemany(
-        "INSERT INTO patient_drugs (patient_id, drug_name, is_interaction, interaction) VALUES (?, ?, ?, ?)", 
+        "INSERT INTO patient_drugs (patient_id, drug_name, has_interaction, interaction) VALUES (?, ?, ?, ?)", 
         patient_drugs_data
     )
 

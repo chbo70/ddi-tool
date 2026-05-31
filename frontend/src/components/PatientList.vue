@@ -5,6 +5,7 @@ defineProps({
     required: true
   }
 })
+defineEmits(['select-patient'])
 </script>
 
 <template>
