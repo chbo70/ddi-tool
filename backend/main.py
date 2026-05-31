@@ -14,6 +14,7 @@ app.add_middleware(
 
 DB_FILE = "database.sqlite"
 BACKEND_CACHE = {}
+SESSION_ID = 1
 
 def get_db_connection():
     conn = sqlite3.connect(DB_FILE, check_same_thread=False)
@@ -41,15 +42,13 @@ def get_patients():
     return {"patients": patients}
 
 @app.get("/prefetch/{patient_id}")
-def prefetch_drugs(patient_id: int, session_id: str = Header(...)):
-    if not drug_list:
-        return {"status": "No drugs provided", "drugs": []}
-
+def prefetch_drugs(patient_id: int):
     conn = get_db_connection()
     cursor = conn.cursor()
 
-    cursor.execute("SELECT drug_name FROM patient_drugs WHERE patient_id = ?", (patient_id,)) # gets all drugs for the patient from the database
-    drug_list = [row["drug_name"] for row in cursor.fetchall()]
+    cursor.execute("SELECT * FROM patient_drugs WHERE patient_id = ?", (patient_id,)) # gets all drugs for the patient from the database
+    patient_drugs = cursor.fetchall()
+    drug_list = [row["drug_name"] for row in patient_drugs]
 
     placeholders = ','.join(['?'] * len(drug_list))
     query = f"SELECT * FROM drugs WHERE drug1 IN ({placeholders}) OR drug2 IN ({placeholders})" # collects all interactions for the provided drugs
@@ -58,13 +57,13 @@ def prefetch_drugs(patient_id: int, session_id: str = Header(...)):
     drugs = cursor.fetchall()
     conn.close()
     
-    BACKEND_CACHE[session_id] = drugs # writes results into cache for a session
-    return {"status": "Cached in-memory"}
+    BACKEND_CACHE[SESSION_ID] = drugs # writes results into cache for a session
+    return patient_drugs
 
 
 @app.post("/interaction")
-def get_drug_interaction(drug: str = Body(..., embed=True), session_id: str = Header(...)):
-    prefetched_data = BACKEND_CACHE.get(session_id) # retrieves prefetched data for the session from cache
+def get_drug_interaction(drug: str = Body(..., embed=True)):
+    prefetched_data = BACKEND_CACHE.get(SESSION_ID) # retrieves prefetched data for the session from cache
     
     if not prefetched_data:
         raise HTTPException(status_code=404, detail="Cache empty or session expired")
@@ -79,7 +78,7 @@ def get_drug_interaction(drug: str = Body(..., embed=True), session_id: str = He
             if key not in results or percentage > parse_percentage(results[key]["percentage"]):
                 results[key] = { "drug1": row["drug1"], "drug2": row["drug2"], "interaction": interaction, "percentage": percentage}
 
-    del BACKEND_CACHE[session_id]
+    del BACKEND_CACHE[SESSION_ID] # clears cache after use
     return {"results": list(results.values())}
 
 
