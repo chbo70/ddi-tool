@@ -1,5 +1,11 @@
 # Drug-Drug Interaction Tool
 
+## Github Repository
+
+Im folgenden Repository finden Sie das Projekt, siehe Projekt README.md für das Starten des Programmes.
+
+[DDI-Tool](https://github.com/chbo70/ddi-tool)
+
 ## Übersicht der Datenquellen
 
 Wir haben uns zu Beginn alle Datenquellen aus der Publikation Ayvaz et al.[^1] mal angeschaut. Einige Quellen waren nur schwer zu erreichen und der Download war hinter einer Registrierung versteckt. Viele der Quellen waren auch ähnlich, zu der in Ihrer mitgelieferten CSV-Datein. Daher haben wir uns entschieden ein Skript zu schreiben, um das File in eine SQL Datenbank zu importieren.
@@ -60,5 +66,24 @@ Das System sollte sich intuitiv von selbst erklären, ohne dass die Ärzte Anlei
 
 ### Erweiterungen
 Durch einen Kategorie-Prefilter & Alternativ-Vorschläge kann der Arzt entlastet werden. Zum Beispiel wenn Medikament A eine Wechselwirkung hat, denkt die App mit und schlägt direkt Medikament B aus derselben Kategorie vor und der Arzt spart sich erneutes Recherchieren. Durch das Hinzufügen von der Dosis eine Medikamentes könnten auch smartere Entscheidungen und akkuratere Warnungen erstellt werden. Beides setzt eine Erweiterung des Datensets voraus.
+
+### Prototyp
+
+![Start Page](images/prototype_start_page.png)
+![Patient Drugs](images/prototype_patient_drugs.png)
+![Drug Search](images/prototype_search_result.png)
+
+## Arbeitsaufteilung
+
+- Niklas Kasper, 12122377: 
+    - Datenaufbereitung, Datenbereinigen
+    - init_database.py und Backend Schnittstellen
+    - Wireframes & Design Mockup 
+    - Dokumentation
+- Boon-Chung Chi, 12118081: 
+    - Frontend des Protoypem
+    - Schnittstellen im Frontend 
+    - Erweiterung der backend Schnittstellen
+    - Tech Stack initialisierung
 
 [^1]: https://doi.org/10.1016/j.jbi.2015.04.006
