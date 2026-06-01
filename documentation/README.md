@@ -38,6 +38,8 @@ API-Service der in bestehende Systeme integriert werden kann. Ärzte wechseln un
 
 ![KIS](images/medication_popup.png)
 
+![KIS](images/wf_popup.png)
+
 ## Erklärung der Usability-Aspekte
 
 DISCLAIMER: Die Ideen wurden nicht 1:1 wie unten genannt umgesetzt. Es wurde nur ein einfacher Prototyp erstellt, welcher lediglich die Drug-Drug Interaction zwischen einer Medikamentenliste und einem neu zu hinzufügenden Medikament, aus der Sicht eines schon angemeldeten Arzt, beinhaltet.
